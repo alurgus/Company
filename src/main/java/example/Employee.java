@@ -1,6 +1,7 @@
 package example;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 
 public class Employee {
 
@@ -17,6 +18,12 @@ public class Employee {
         this.position = position;
         this.salary = salary;
     }
+
+    public static final Comparator<Employee> DATE_COMPARATOR = Comparator
+            .comparingInt((Employee e) -> e.birthDate.getYear())
+            .thenComparingInt(e -> e.birthDate.getMonthValue())
+            .thenComparingInt(e -> e.birthDate.getDayOfMonth());
+
 
     public String getName() {
         return name;
